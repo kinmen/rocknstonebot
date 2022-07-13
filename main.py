@@ -22,7 +22,8 @@ def main():
     me = r.user.me()
     config.IGNORED_USERS.add(me.name)
 
-    sub = r.subreddit('DeepRockGalactic')
+    # sub = r.subreddit('DeepRockGalactic')
+    sub = r.subreddit('all')
     # sub = r.redditor('kaewye')
     logger.info("Looking at sub: {}".format(sub))
 
