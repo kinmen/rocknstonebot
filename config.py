@@ -1,9 +1,11 @@
+import os
+
 REDDIT_CONF = {
     "user_agent" : "Reply rock and stone bot test. (By u/KaeWye)",
-    "client_id" : "aaa",
-    "client_secret" : "sec",
-    "username": "nan",
-    "password": "nan!"
+    "client_id" : os.environ.get("CLIENT_ID","<your client id>"),
+    "client_secret" : os.environ.get("CLIENT_SECRET","<your_client_secret>"),
+    "username": os.environ.get("USERNAME","<your_username>"),
+    "password": os.environ.get("PASSWORD","<your_password>")
 }
 
 IGNORED_USERS = {"kaewye", "WanderingDwarfMiner"}
