@@ -17,11 +17,13 @@ REPLIES = [
     "Rock and roll and stone!",
     "Rock and Stone to the Bone!",
     "Rock and Stone in the Heart!",
+    "Rockity Rock and Stone!",
+    "Can I get a Rock and Stone?",
+    "Did I hear a Rock and Stone?",
+    "For Karl!",
     "For Rock and Stone!",
     "If you don't Rock and Stone, you ain't comin' home!",
-    "Did I hear a Rock and Stone?",
-    "To Rock and Stone!",
     "That's it lads! Rock and Stone!",
-    "We fight for Rock and Stone!",
-    "For Karl!"
+    "To Rock and Stone!",
+    "We fight for Rock and Stone!"
     ]
