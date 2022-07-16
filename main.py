@@ -1,23 +1,33 @@
+import logging
 import praw
 import random
 import re
 
 import config
 
-import logging
+def setup_logging():
+    handler = logging.StreamHandler()
+    # handler.setLevel(logging.DEBUG)
+    handler.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
 
-handler = logging.StreamHandler()
-# handler.setLevel(logging.DEBUG)
-handler.setLevel(logging.INFO)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(handler)
-for logger_name in ("praw", "prawcore"):
-    logger = logging.getLogger(logger_name)
-    logger.setLevel(logging.DEBUG)
+    for logger_name in ("praw", "prawcore"):
+        logger = logging.getLogger(logger_name)
+        logger.setLevel(logging.DEBUG)
+        logger.addHandler(handler)
+
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
     logger.addHandler(handler)
 
+    return logger
+
+logger = setup_logging()
+
 def main():
+
+    # Instantiate reddit client and add my username to ignore list just in case.
     r = praw.Reddit(**config.REDDIT_CONF)
     me = r.user.me()
     config.IGNORED_USERS.add(me.name)
