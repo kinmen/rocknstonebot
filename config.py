@@ -8,7 +8,7 @@ REDDIT_CONF = {
     "password": os.environ.get("REDDIT_PASSWORD","<your_password>")
 }
 
-IGNORED_USERS = {"kaewye", "WanderingDwarfMiner"}
+IGNORED_USERS = {"WanderingDwarfMiner"}
 REPLIES = [
     "Rock and Stone!",
     "Rock and Stone, Brother!",
