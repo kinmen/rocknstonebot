@@ -34,22 +34,22 @@ def main():
 
     # sub = r.subreddit('DeepRockGalactic')
     sub = r.subreddit('all')
-    # sub = r.redditor('kaewye')
     logger.info("Looking at sub: {}".format(sub))
 
     for comment in sub.stream.comments(skip_existing=True):
     # for comment in sub.comments(limit=30):
-        # title = s.title
         text = comment.body
         logger.info("Checking comment: {}".format(comment.permalink))
         if should_reply(comment):
             logger.info("replying to comment with id: {}, author: {}, link: {}".format(comment, comment.author, comment.permalink))
             comment.reply(body = random.choice(config.REPLIES))
-            comment.save()
+            comment.save() # We use save to save state and mark that we've already replied to this comment
 
-def should_reply(comment):
+def should_reply(comment: str) -> bool:
     trig_re = r'.*rock and stone.*'
     text = comment.body
+
+    # Check if matches rock and stone, not our comment (or from ignored user), and not one we've seen before
     if (re.match(trig_re, text, re.IGNORECASE)
         and comment.author.name not in config.IGNORED_USERS
         and not comment.saved):
