@@ -27,3 +27,44 @@ REPLIES = [
     "To Rock and Stone!",
     "We fight for Rock and Stone!"
     ]
+
+LOGGING_CONFIG = {
+    'version': 1,
+    # 'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s - %(name)s - %(levelname)s : %(message)s'
+        },
+    },
+    'handlers': {
+        'default': {
+            'level': os.environ.get('LOG_STREAMHANDLER_LEVEL', 'INFO'),
+            'formatter': 'standard',
+            'class': 'logging.StreamHandler',
+            # 'stream': 'ext://sys.stdout',  # Default is stderr
+        },
+    },
+    'loggers': {
+        # '': {  # root logger
+        #     'handlers': ['default'],
+        #     'level': 'WARNING',
+        #     'propagate': False
+        # },
+
+        'praw': {
+            'handlers': ['default'],
+            'level': 'DEBUG',
+        },
+
+        'prawcore': {
+            'handlers': ['default'],
+            'level': 'DEBUG',
+        },
+
+        '__main__': {  # if __name__ == '__main__'
+            'handlers': ['default'],
+            'level': os.environ.get('LOG_MAIN_LOGGER_LEVEL', 'INFO'),
+            'propagate': False
+        },
+    }
+}

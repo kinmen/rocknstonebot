@@ -1,29 +1,13 @@
 import logging
+import logging.config
 import praw
 import random
 import re
 
 import config
 
-def setup_logging():
-    handler = logging.StreamHandler()
-    # handler.setLevel(logging.DEBUG)
-    handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-
-    for logger_name in ("praw", "prawcore"):
-        logger = logging.getLogger(logger_name)
-        logger.setLevel(logging.DEBUG)
-        logger.addHandler(handler)
-
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    logger.addHandler(handler)
-
-    return logger
-
-logger = setup_logging()
+logging.config.dictConfig(config.LOGGING_CONFIG)
+logger = logging.getLogger(__name__)
 
 def main():
 
