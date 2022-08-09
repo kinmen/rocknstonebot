@@ -23,7 +23,7 @@ def main():
     for comment in sub.stream.comments(skip_existing=True):
     # for comment in sub.comments(limit=30):
         text = comment.body
-        logger.info("Checking comment: {}".format(comment.permalink))
+        logger.debug("Checking comment: {}".format(comment.permalink))
         if should_reply(comment):
             logger.info("replying to comment with id: {}, author: {}, link: {}".format(comment, comment.author, comment.permalink))
             comment.reply(body = random.choice(config.REPLIES))
