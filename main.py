@@ -20,7 +20,7 @@ def main():
     sub = r.subreddit('all')
     logger.info("Looking at sub: {}".format(sub))
 
-    for comment in sub.stream.comments(skip_existing=True):
+    for comment in sub.stream.comments():
     # for comment in sub.comments(limit=30):
         text = comment.body
         logger.debug("Checking comment: {}".format(comment.permalink))
