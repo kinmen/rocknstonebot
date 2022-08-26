@@ -22,12 +22,23 @@ def main():
 
     for comment in sub.stream.comments():
     # for comment in sub.comments(limit=30):
+    # if True:
+    #     comment = r.comment('ilprh2g')
         text = comment.body
         logger.debug("Checking comment: {}".format(comment.permalink))
         if should_reply(comment):
             logger.info("replying to comment with id: {}, author: {}, link: {}".format(comment, comment.author, comment.permalink))
-            comment.reply(body = random.choice(config.REPLIES))
-            comment.save() # We use save to save state and mark that we've already replied to this comment
+            try:
+                comment.reply(body = random.choice(config.REPLIES))
+                comment.save() # We use save to save state and mark that we've already replied to this comment
+            except praw.exceptions.RedditAPIException as e:
+                for subexception in e.items:
+                    # If a user blocked me in the comment chain, it raises a generic 'something is broken' error
+                    if subexception.error_message == config.REDDIT_EXCEPTIONS['BLOCKED_PARENT_USER']:
+                        logger.warning("Couldn't reply to comment, most likely due to user block in thread. id: {}, author: {}, link: {}".format(
+                            comment, comment.author, comment.permalink), exc_info = subexception)
+                    else:
+                        raise subexception
 
 def should_reply(comment) -> bool:
     trig_re = r'.*rock and stone.*'

@@ -68,3 +68,7 @@ LOGGING_CONFIG = {
         },
     }
 }
+
+REDDIT_EXCEPTIONS = {
+    'BLOCKED_PARENT_USER' : "SOMETHING_IS_BROKEN: 'Something is broken, please try again later.' on field 'parent'"
+}
