@@ -36,9 +36,9 @@ def main():
                     # If a user blocked me in the comment chain, it raises a generic 'something is broken' error
                     if subexception.error_message == config.REDDIT_EXCEPTIONS['BLOCKED_PARENT_USER']:
                         logger.warning("Couldn't reply to comment, most likely due to user block in thread. id: {}, author: {}, link: {}".format(
-                            comment, comment.author, comment.permalink), exc_info = subexception)
-                    else:
-                        raise subexception
+                            comment, comment.author, comment.permalink))
+                logger.exception("Failed to reply to comment/save for id: {}, author: {}, link: {}. Error: {}".format(
+                            comment, comment.author, comment.permalink, e), exc_info = e)
 
 def should_reply(comment) -> bool:
     trig_re = r'.*rock and stone.*'
