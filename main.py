@@ -1,6 +1,7 @@
 import logging
 import logging.config
 import praw
+import prawcore
 import random
 import re
 
@@ -39,6 +40,9 @@ def main():
                             comment, comment.author, comment.permalink))
                 logger.exception("Failed to reply to comment/save for id: {}, author: {}, link: {}. Error: {}".format(
                             comment, comment.author, comment.permalink, e), exc_info = e)
+            except prawcore.exceptions.Forbidden as e:
+                logger.warning("Couldn't reply to comment because forbidden, most likely due to banned from sub. id: {}, author: {}, link: {}".format(
+                            comment, comment.author, comment.permalink))
 
 def should_reply(comment) -> bool:
     trig_re = r'.*rock and stone.*'
