@@ -49,7 +49,7 @@ def should_reply(comment) -> bool:
     text = comment.body
 
     # Check if matches rock and stone, not our comment (or from ignored user), and not one we've seen before
-    if (re.match(trig_re, text, re.IGNORECASE)
+    if (re.match(trig_re, text, re.IGNORECASE | re.DOTALL)
         and comment.author.name not in config.IGNORED_USERS
         and not already_replied_comment(comment)
         and not already_replied_thread(comment)):
