@@ -21,16 +21,16 @@ def main():
 
     # sub = r.subreddit('DeepRockGalactic')
     sub = r.subreddit('all')
-    logger.info("Looking at sub: {}".format(sub))
+    print("Looking at sub: {}".format(sub))
 
     for comment in sub.stream.comments():
     # for comment in sub.comments(limit=30):
     # if True:
     #     comment = r.comment('ilprh2g')
         text = comment.body
-        logger.debug("Checking comment: {}".format(comment.permalink))
+        print("Checking comment: {}".format(comment.permalink))
         if should_reply(comment):
-            logger.info("replying to comment with id: {}, author: {}, link: {}".format(comment, comment.author, comment.permalink))
+            print("replying to comment with id: {}, author: {}, link: {}".format(comment, comment.author, comment.permalink))
             try:
                 comment.reply(body = random.choice(config.REPLIES))
                 comment.save() # We use save to save state and mark that we've already replied to this comment
@@ -38,12 +38,12 @@ def main():
                 for subexception in e.items:
                     # If a user blocked me in the comment chain, it raises a generic 'something is broken' error
                     if subexception.error_message == config.REDDIT_EXCEPTIONS['BLOCKED_PARENT_USER']:
-                        logger.warning("Couldn't reply to comment, most likely due to user block in thread. id: {}, author: {}, link: {}".format(
+                        print("Couldn't reply to comment, most likely due to user block in thread. id: {}, author: {}, link: {}".format(
                             comment, comment.author, comment.permalink))
-                logger.exception("Failed to reply to comment/save for id: {}, author: {}, link: {}. Error: {}".format(
-                            comment, comment.author, comment.permalink, e), exc_info = e)
+                print("Failed to reply to comment/save for id: {}, author: {}, link: {}. Error: {}".format(
+                            comment, comment.author, comment.permalink, e))
             except prawcore.exceptions.Forbidden as e:
-                logger.warning("Couldn't reply to comment because forbidden, most likely due to banned from sub. id: {}, author: {}, link: {}".format(
+                print("Couldn't reply to comment because forbidden, most likely due to banned from sub. id: {}, author: {}, link: {}".format(
                             comment, comment.author, comment.permalink))
 
 def should_reply(comment) -> bool:
@@ -77,7 +77,7 @@ def already_replied_thread(comment):
         refresh_counter += 1
 
         if already_replied_comment(ancestor):
-            logger.info("Already replied to comment: {}. Replied comment ancestor: {}".format(comment.id, ancestor.id))
+            print("Already replied to comment: {}. Replied comment ancestor: {}".format(comment.id, ancestor.id))
             return True
 
     return False
