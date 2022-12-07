@@ -10,7 +10,9 @@ import config
 logging.config.dictConfig(config.LOGGING_CONFIG)
 logger = logging.getLogger(__name__)
 
+print("kyang test uptop")
 def main():
+    print("starting in main")
 
     # Instantiate reddit client and add my username to ignore list just in case.
     r = praw.Reddit(**config.REDDIT_CONF)
@@ -81,6 +83,7 @@ def already_replied_thread(comment):
     return False
 
 if __name__ == '__main__':
+    print("name main gonna run")
     main()
 
 
