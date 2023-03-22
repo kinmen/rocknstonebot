@@ -28,6 +28,28 @@ REPLIES = [
     "We fight for Rock and Stone!"
     ]
 
+GIMLI_QUOTES = [
+    "And my Axe!",
+    "Nobody tosses a dwarf!",
+    "Not the beard!",
+    "I have the eyes of a hawk and the ears of a fox!",
+    "I’ll have no pointy-ear outscoring me!",
+    "It’s the Dwarves that go swimming with little, hairy women!",
+    "Well, this is a thing unheard of! An Elf would go underground, where a Dwarf dare not? Oh, I’d never hear the end of it!",
+    "Certainty of death? Small chance of success? What are we waiting for?",
+    "Let them come! There is one Dwarf yet in Moria who still draws breath!",
+    "Bring your pretty face to my axe.",
+    "Aye. I could do that.",
+    "Roaring Fires, Malt Beer, Ripe Meat Off The Bone!",
+    "Give me your name, Horse Master, and I shall give you mine!",
+    "Toss me! I cannot jump the distance, you'll have to toss me!",
+    "Don't tell the elf!",
+    "That still only counts as one!",
+    "I will be dead before I see the Ring in the hands of an Elf! Never trust an Elf!",
+    "I’m wasted on cross-country! We Dwarves are natural sprinters, very dangerous over short distances!",
+    "There’s plenty for the both of us, may the best Dwarf win!"
+    ]
+
 LOGGING_CONFIG = {
     'version': 1,
     # 'disable_existing_loggers': True,
