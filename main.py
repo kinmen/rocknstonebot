@@ -30,7 +30,7 @@ def main():
         if should_reply(comment):
             logger.info("replying to comment with id: {}, author: {}, link: {}".format(comment, comment.author, comment.permalink))
             try:
-                comment.reply(body = random.choice(config.GIMLI_QUOTES))
+                comment.reply(body = random.choice(config.REPLIES))
                 comment.save() # We use save to save state and mark that we've already replied to this comment
             except praw.exceptions.RedditAPIException as e:
                 for subexception in e.items:
