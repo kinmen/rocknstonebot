@@ -31,8 +31,8 @@ def main():
             logger.info("replying to comment with id: {}, author: {}, link: {}".format(comment, comment.author, comment.permalink))
             try:
                 reply_body = random.choice(config.REPLIES)
-                if should_reverse_reply(comment):
-                    reply_body = reply_body[::-1]
+                # if should_reverse_reply(comment):
+                #     reply_body = reply_body[::-1]
                 comment.reply(body = reply_body)
                 comment.save() # We use save to save state and mark that we've already replied to this comment
             except praw.exceptions.RedditAPIException as e:
