@@ -1,7 +1,7 @@
 # rocknstonebot
 Simple reddit bot that replies "Rock and stone" quotes to other comments that rock and stone.
 
-Right now deployed in Heroku, running as reddit user [u/WanderingDwarfMiner](https://new.reddit.com/user/WanderingDwarfMiner/)
+Right now deployed in Oracle CI, running as reddit user [u/WanderingDwarfMiner](https://new.reddit.com/user/WanderingDwarfMiner/)
 
 ## Setup
 1. Install requirements:
