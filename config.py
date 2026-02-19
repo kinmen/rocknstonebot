@@ -1,3 +1,4 @@
+import logging
 import os
 
 REDDIT_CONF = {
@@ -7,6 +8,8 @@ REDDIT_CONF = {
     "username": os.environ.get("REDDIT_USERNAME","<your_username>"),
     "password": os.environ.get("REDDIT_PASSWORD","<your_password>")
 }
+
+SUBREDDIT = 'DeepRockGalactic'
 
 IGNORED_USERS = {"WanderingDwarfMiner"}
 REPLIES = [
@@ -26,7 +29,7 @@ REPLIES = [
     "That's it lads! Rock and Stone!",
     "To Rock and Stone!",
     "We fight for Rock and Stone!"
-    ]
+]
 
 GIMLI_QUOTES = [
     "And my Axe!",
@@ -48,7 +51,7 @@ GIMLI_QUOTES = [
     "I will be dead before I see the Ring in the hands of an Elf! Never trust an Elf!",
     "I’m wasted on cross-country! We Dwarves are natural sprinters, very dangerous over short distances!",
     "There’s plenty for the both of us, may the best Dwarf win!"
-    ]
+]
 
 LOGGING_CONFIG = {
     'version': 1,
@@ -67,11 +70,11 @@ LOGGING_CONFIG = {
         },
     },
     'loggers': {
-        # '': {  # root logger
-        #     'handlers': ['default'],
-        #     'level': 'WARNING',
-        #     'propagate': False
-        # },
+        '': {  # root logger
+            'handlers': ['default'],
+            'level': 'WARNING',
+            'propagate': False
+        },
 
         'praw': {
             'handlers': ['default'],
@@ -85,12 +88,17 @@ LOGGING_CONFIG = {
 
         '__main__': {  # if __name__ == '__main__'
             'handlers': ['default'],
-            'level': os.environ.get('LOG_MAIN_LOGGER_LEVEL', 'INFO'),
+            'level': os.environ.get('LOG_MAIN_LOGGER_LEVEL', 'DEBUG'),
             'propagate': False
         },
+        'main': {
+            'handlers': ['default'],
+            'level': os.environ.get('LOG_MAIN_LOGGER_LEVEL', 'DEBUG'),
+            'propagate': False
+        }
     }
 }
 
 REDDIT_EXCEPTIONS = {
-    'BLOCKED_PARENT_USER' : "SOMETHING_IS_BROKEN: 'Something is broken, please try again later.' on field 'parent'"
+    'BLOCKED_PARENT_USER': "SOMETHING_IS_BROKEN: 'Something is broken, please try again later.' on field 'parent'"
 }

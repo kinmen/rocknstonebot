@@ -1,6 +1,8 @@
 import logging
 import logging.config
 import praw
+import praw.models
+import praw.exceptions
 import prawcore
 import random
 import re
@@ -27,9 +29,6 @@ class RockAndStoneBot:
     def main(self) -> None:
         """Main entry point for the Reddit bot."""
         self.process_comment_stream(self.subreddit)
-        # for mention in praw.models.util.stream_generator(self.reddit.inbox.mentions, skip_existing=True):
-        #     print(f"{mention.author}\\n{mention.body}\\n")
-        #     count += 1
 
     def initialize_reddit_client(self) -> tuple[praw.Reddit, praw.models.Subreddit]:
         """Initialize and configure the Reddit client."""
